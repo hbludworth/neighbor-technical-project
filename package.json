@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/hbludworth/neighbor-technical-project/issues"
   },
-  "homepage": "https://github.com/hbludworth/neighbor-technical-project#readme"
+  "homepage": "https://github.com/hbludworth/neighbor-technical-project#readme",
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
 }
