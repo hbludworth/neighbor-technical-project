@@ -1,0 +1,19 @@
+{
+  "name": "neighbor-technical-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hbludworth/neighbor-technical-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hbludworth/neighbor-technical-project/issues"
+  },
+  "homepage": "https://github.com/hbludworth/neighbor-technical-project#readme"
+}
