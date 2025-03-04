@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/data/listings.json build/src/data/listings.json",
     "dev": "ts-node-dev ./src/server.ts --respawn --transpileOnly",
     "start": "node ./build/src/server.js"
   },
