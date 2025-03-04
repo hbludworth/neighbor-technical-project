@@ -1,30 +1,22 @@
 import express from 'express';
 import { listingData } from './data/store';
-import { VehicleResponseItem } from './types/types';
+import { VehicleRequestItem } from './types/types';
+import { findVehicleStorageOptions } from './search';
 
 const router = express.Router();
 
 router.route('/').post(async (req, res, next) => {
   try {
-    // FIXME this is just a test. Sending all data back
-    const locations = [
-      ...new Set(listingData.map((listing) => listing.location_id)),
-    ];
-    const vehicleResponse: VehicleResponseItem[] = locations.map((location) => {
-      const listings = listingData.filter(
-        (listing) => listing.location_id === location
-      );
-      const response: VehicleResponseItem = {
-        location_id: location,
-        listing_ids: listings.map((listing) => listing.id),
-        total_price_in_cents: listings.reduce(
-          (acc, num) => acc + num.price_in_cents,
-          0
-        ),
-      };
-      return response;
-    });
-    res.status(200).json(vehicleResponse);
+    const request: VehicleRequestItem[] = req.body;
+
+    if (!request || request.length === 0 || Object.keys(request).length === 0) {
+      res.status(400).end();
+      return;
+    }
+
+    const storageOptions = findVehicleStorageOptions(request, listingData);
+
+    res.status(200).json(storageOptions);
   } catch {
     res.status(500).end();
   }
