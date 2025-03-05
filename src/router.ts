@@ -5,7 +5,7 @@ import { findVehicleStorageOptions } from './search';
 
 const router = express.Router();
 
-router.route('/').post(async (req, res, next) => {
+router.route('/').post(async (req, res, _next) => {
   try {
     const request: VehicleRequestItem[] = req.body;
 

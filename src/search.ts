@@ -29,7 +29,7 @@ export function findVehicleStorageOptions(
   for (const [location_id, locationListings] of Object.entries(
     listingsByLocation
   )) {
-    // Get all possible combinations sorted by total price
+    // Get all possible listing combinations sorted by total price
     const possibleCombinations = getAllCombinations(locationListings).sort(
       (a, b) =>
         a.reduce((sum, c) => sum + c.price_in_cents, 0) -
@@ -38,7 +38,7 @@ export function findVehicleStorageOptions(
 
     let cheapestCombo: Listing[] = [];
 
-    // Loop through possible combinations. Will break as soon as one that fits all the cars is found as it will be the cheapest
+    // Loop through possible combinations. Loop is broken as soon as one that fits all the cars is found as it will be the cheapest
     comboLoop: for (const combo of possibleCombinations) {
       const sortedListings = combo.sort(
         (a, b) => a.price_in_cents - b.price_in_cents
@@ -94,12 +94,13 @@ export function findVehicleStorageOptions(
     }
   }
 
-  // Return combinations sorted by price ascending
+  // Return results sorted by price ascending
   return results.sort(
     (a, b) => a.total_price_in_cents - b.total_price_in_cents
   );
 }
 
+// Gets all possible combinations of provided listings, with each combo having a maximum size of 5 listings (5 is the maximum number of cars that can be in a request, so we'll never need more than 5 listings)
 function getAllCombinations(arr: Listing[]): Listing[][] {
   const result: Listing[][] = [];
 
